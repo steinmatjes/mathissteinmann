@@ -120,6 +120,10 @@
     display: inline-block;
   }
 
+  .title:hover {
+    text-decoration: underline;
+  }
+
   .desc {
     max-height: 0;
     overflow: hidden;
@@ -317,25 +321,16 @@
   document.querySelectorAll(".title[aria-controls]").forEach(function (title) {
     var panel = document.getElementById(title.getAttribute("aria-controls"));
     if (!panel) return;
-    var item = title.closest(".item");
-    var locked = false;
 
-    function open() {
-      panel.style.maxHeight = panel.scrollHeight + "px";
-      title.setAttribute("aria-expanded", "true");
-    }
-    function close() {
-      panel.style.maxHeight = "0px";
-      title.setAttribute("aria-expanded", "false");
-    }
     function toggle() {
-      if (locked) { locked = false; close(); }
-      else { locked = true; open(); }
-    }
-
-    if (item) {
-      item.addEventListener("mouseenter", function () { open(); });
-      item.addEventListener("mouseleave", function () { if (!locked) close(); });
+      var expanded = title.getAttribute("aria-expanded") === "true";
+      if (expanded) {
+        panel.style.maxHeight = "0px";
+        title.setAttribute("aria-expanded", "false");
+      } else {
+        panel.style.maxHeight = panel.scrollHeight + "px";
+        title.setAttribute("aria-expanded", "true");
+      }
     }
 
     title.addEventListener("click", toggle);
