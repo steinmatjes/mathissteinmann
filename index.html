@@ -133,12 +133,16 @@
 
   .arrow {
     display: inline-block;
-    transition: transform 0.2s ease;
-    font-size: 0.7em;
+    width: 0.5em;
+    height: 0.5em;
+    background: currentColor;
+    vertical-align: 0.08em;
+    transition: background 0.2s ease, box-shadow 0.2s ease;
   }
 
   .toggle[aria-expanded="true"] .arrow {
-    transform: rotate(90deg);
+    background: transparent;
+    box-shadow: inset 0 0 0 1px currentColor;
   }
 
   .desc {
@@ -161,30 +165,22 @@
   }
 
   @media (max-width: 768px) {
+    html, body {
+      font-size: 12px;
+    }
+
     body {
-      padding: 8vh 16px;
-      justify-content: center;
-      align-items: flex-start;
+      padding: 10vh 14px 6vh 14px;
     }
 
     .wrap {
-      margin: 0 auto;
-      text-align: center;
+      max-width: 100%;
     }
 
     .row {
-      display: block;
-      column-gap: 0;
-      margin-bottom: 1.4em;
-    }
-
-    .label,
-    .content {
-      text-align: center;
-    }
-
-    .label {
-      margin-bottom: 0.3em;
+      grid-template-columns: 35% 1fr;
+      column-gap: 12px;
+      margin-bottom: 1.1em;
     }
   }
 </style>
@@ -213,7 +209,7 @@
     <div class="label">Currently</div>
     <div class="content">
       <div class="item">
-        <a href="https://birdinspect.com" target="_blank" rel="noopener noreferrer">Bird</a><button class="toggle" type="button" aria-expanded="false" aria-controls="d-bird"><span class="arrow">&#9654;&#xFE0E;</span></button>
+        <a href="https://birdinspect.com" target="_blank" rel="noopener noreferrer">Bird</a><button class="toggle" type="button" aria-expanded="false" aria-controls="d-bird"><span class="arrow" aria-hidden="true"></span></button>
         <div class="desc" id="d-bird">
           <div class="desc-inner">
             <div>Feb 2026 &ndash; Present</div>
@@ -229,7 +225,7 @@
     <div class="label">Past</div>
     <div class="content">
       <div class="item">
-        <a href="https://www.midw.jp" target="_blank" rel="noopener noreferrer">MIDW</a><button class="toggle" type="button" aria-expanded="false" aria-controls="d-midw"><span class="arrow">&#9654;&#xFE0E;</span></button>
+        <a href="https://www.midw.jp" target="_blank" rel="noopener noreferrer">MIDW</a><button class="toggle" type="button" aria-expanded="false" aria-controls="d-midw"><span class="arrow" aria-hidden="true"></span></button>
         <div class="desc" id="d-midw">
           <div class="desc-inner">
             <div>Mar 2026 &ndash; May 2026</div>
@@ -239,7 +235,7 @@
         </div>
       </div>
       <div class="item">
-        <a href="https://www.emchberger.ch" target="_blank" rel="noopener noreferrer">Emch+Berger</a><button class="toggle" type="button" aria-expanded="false" aria-controls="d-emch"><span class="arrow">&#9654;&#xFE0E;</span></button>
+        <a href="https://www.emchberger.ch" target="_blank" rel="noopener noreferrer">Emch+Berger</a><button class="toggle" type="button" aria-expanded="false" aria-controls="d-emch"><span class="arrow" aria-hidden="true"></span></button>
         <div class="desc" id="d-emch">
           <div class="desc-inner">
             <div>Sep 2025 &ndash; Feb 2026</div>
@@ -249,7 +245,7 @@
         </div>
       </div>
       <div class="item">
-        <a href="https://www.hotel-nimo.ch" target="_blank" rel="noopener noreferrer">Ni-Mo</a><button class="toggle" type="button" aria-expanded="false" aria-controls="d-nimo"><span class="arrow">&#9654;&#xFE0E;</span></button>
+        <a href="https://www.hotel-nimo.ch" target="_blank" rel="noopener noreferrer">Ni-Mo</a><button class="toggle" type="button" aria-expanded="false" aria-controls="d-nimo"><span class="arrow" aria-hidden="true"></span></button>
         <div class="desc" id="d-nimo">
           <div class="desc-inner">
             <div>Jul 2023 &ndash; Jun 2025</div>
@@ -259,7 +255,7 @@
         </div>
       </div>
       <div class="item">
-        <a href="https://www.bgp.ch" target="_blank" rel="noopener noreferrer">BGP</a><button class="toggle" type="button" aria-expanded="false" aria-controls="d-bgp"><span class="arrow">&#9654;&#xFE0E;</span></button>
+        <a href="https://www.bgp.ch" target="_blank" rel="noopener noreferrer">BGP</a><button class="toggle" type="button" aria-expanded="false" aria-controls="d-bgp"><span class="arrow" aria-hidden="true"></span></button>
         <div class="desc" id="d-bgp">
           <div class="desc-inner">
             <div>Sep 2022 &ndash; Apr 2023</div>
@@ -269,7 +265,7 @@
         </div>
       </div>
       <div class="item">
-        <span>Independent Work</span><button class="toggle" type="button" aria-expanded="false" aria-controls="d-indep"><span class="arrow">&#9654;&#xFE0E;</span></button>
+        <span>Independent Work</span><button class="toggle" type="button" aria-expanded="false" aria-controls="d-indep"><span class="arrow" aria-hidden="true"></span></button>
         <div class="desc" id="d-indep">
           <div class="desc-inner">
             Competition entries and academic projects including Werk Null (SIA-142 competition for Holcim's visitor centre in Siggenthal, with Jonas Baltensperger &amp; Sebastian Karreth) and studio work under Prof. Christ &amp; Gantenbein and Prof. A. Caruso at ETH Z&uuml;rich.
@@ -298,7 +294,7 @@
     <div class="label">Blog</div>
     <div class="content">
       <div class="item">
-        <span>Developer &ndash; Architect Intralogue Pt. 1</span><button class="toggle" type="button" aria-expanded="false" aria-controls="d-blog-1"><span class="arrow">&#9654;&#xFE0E;</span></button>
+        <span>Developer &ndash; Architect Intralogue Pt. 1</span><button class="toggle" type="button" aria-expanded="false" aria-controls="d-blog-1"><span class="arrow" aria-hidden="true"></span></button>
         <div class="desc" id="d-blog-1">
           <div class="desc-inner">
             <div>May 2026</div>
