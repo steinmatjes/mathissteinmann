@@ -115,36 +115,9 @@
     text-decoration: underline;
   }
 
-  .toggle {
-    background: none;
-    border: 0;
-    padding: 0;
-    margin: 0 0 0 0.5em;
-    color: inherit;
-    font: inherit;
-    letter-spacing: inherit;
-    text-transform: inherit;
+  .title {
     cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 0.72em;
-    height: 0.72em;
-    line-height: 1;
-    vertical-align: baseline;
-  }
-
-  .arrow {
-    display: block;
-    width: 0.5em;
-    height: 0.5em;
-    background: currentColor;
-    transition: background 0.2s ease, box-shadow 0.2s ease;
-  }
-
-  .toggle[aria-expanded="true"] .arrow {
-    background: transparent;
-    box-shadow: inset 0 0 0 1px currentColor;
+    display: inline-block;
   }
 
   .desc {
@@ -216,7 +189,7 @@
     <div class="label">Currently</div>
     <div class="content">
       <div class="item">
-        <a href="https://birdinspect.com" target="_blank" rel="noopener noreferrer">Bird</a><button class="toggle" type="button" aria-expanded="false" aria-controls="d-bird"><span class="arrow" aria-hidden="true"></span></button>
+        <span class="title" role="button" tabindex="0" aria-expanded="false" aria-controls="d-bird">Bird</span>
         <div class="desc" id="d-bird">
           <div class="desc-inner">
             <div>Feb 2026 &ndash; Present</div>
@@ -233,7 +206,7 @@
     <div class="label">Past</div>
     <div class="content">
       <div class="item">
-        <a href="https://www.midw.jp" target="_blank" rel="noopener noreferrer">MIDW</a><button class="toggle" type="button" aria-expanded="false" aria-controls="d-midw"><span class="arrow" aria-hidden="true"></span></button>
+        <span class="title" role="button" tabindex="0" aria-expanded="false" aria-controls="d-midw">MIDW</span>
         <div class="desc" id="d-midw">
           <div class="desc-inner">
             <div>Mar 2026 &ndash; May 2026</div>
@@ -244,7 +217,7 @@
         </div>
       </div>
       <div class="item">
-        <a href="https://www.emchberger.ch" target="_blank" rel="noopener noreferrer">Emch+Berger</a><button class="toggle" type="button" aria-expanded="false" aria-controls="d-emch"><span class="arrow" aria-hidden="true"></span></button>
+        <span class="title" role="button" tabindex="0" aria-expanded="false" aria-controls="d-emch">Emch+Berger</span>
         <div class="desc" id="d-emch">
           <div class="desc-inner">
             <div>Sep 2025 &ndash; Feb 2026</div>
@@ -255,7 +228,7 @@
         </div>
       </div>
       <div class="item">
-        <a href="https://www.hotel-nimo.ch" target="_blank" rel="noopener noreferrer">Ni-Mo</a><button class="toggle" type="button" aria-expanded="false" aria-controls="d-nimo"><span class="arrow" aria-hidden="true"></span></button>
+        <span class="title" role="button" tabindex="0" aria-expanded="false" aria-controls="d-nimo">Ni-Mo</span>
         <div class="desc" id="d-nimo">
           <div class="desc-inner">
             <div>Jul 2023 &ndash; Jun 2025</div>
@@ -266,7 +239,7 @@
         </div>
       </div>
       <div class="item">
-        <a href="https://www.bgp.ch" target="_blank" rel="noopener noreferrer">BGP</a><button class="toggle" type="button" aria-expanded="false" aria-controls="d-bgp"><span class="arrow" aria-hidden="true"></span></button>
+        <span class="title" role="button" tabindex="0" aria-expanded="false" aria-controls="d-bgp">BGP</span>
         <div class="desc" id="d-bgp">
           <div class="desc-inner">
             <div>Sep 2022 &ndash; Apr 2023</div>
@@ -277,7 +250,7 @@
         </div>
       </div>
       <div class="item">
-        <span>Independent Work</span><button class="toggle" type="button" aria-expanded="false" aria-controls="d-indep"><span class="arrow" aria-hidden="true"></span></button>
+        <span class="title" role="button" tabindex="0" aria-expanded="false" aria-controls="d-indep">Independent Work</span>
         <div class="desc" id="d-indep">
           <div class="desc-inner">
             Competition entries and academic projects including Werk Null (SIA-142 competition for Holcim's visitor centre in Siggenthal, with Jonas Baltensperger &amp; Sebastian Karreth) and studio work under Prof. Christ &amp; Gantenbein and Prof. A. Caruso at ETH Z&uuml;rich.
@@ -306,7 +279,7 @@
     <div class="label">Blog</div>
     <div class="content">
       <div class="item">
-        <span>Developer &ndash; Architect Intralogue Pt. 1</span><button class="toggle" type="button" aria-expanded="false" aria-controls="d-blog-1"><span class="arrow" aria-hidden="true"></span></button>
+        <span class="title" role="button" tabindex="0" aria-expanded="false" aria-controls="d-blog-1">Developer &ndash; Architect Intralogue Pt. 1</span>
         <div class="desc" id="d-blog-1">
           <div class="desc-inner">
             <div>May 2026</div>
@@ -341,17 +314,35 @@
 </main>
 
 <script>
-  document.querySelectorAll(".toggle").forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      var expanded = btn.getAttribute("aria-expanded") === "true";
-      var panel = document.getElementById(btn.getAttribute("aria-controls"));
-      if (!panel) return;
-      if (expanded) {
-        panel.style.maxHeight = "0px";
-        btn.setAttribute("aria-expanded", "false");
-      } else {
-        panel.style.maxHeight = panel.scrollHeight + "px";
-        btn.setAttribute("aria-expanded", "true");
+  document.querySelectorAll(".title[aria-controls]").forEach(function (title) {
+    var panel = document.getElementById(title.getAttribute("aria-controls"));
+    if (!panel) return;
+    var item = title.closest(".item");
+    var locked = false;
+
+    function open() {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+      title.setAttribute("aria-expanded", "true");
+    }
+    function close() {
+      panel.style.maxHeight = "0px";
+      title.setAttribute("aria-expanded", "false");
+    }
+    function toggle() {
+      if (locked) { locked = false; close(); }
+      else { locked = true; open(); }
+    }
+
+    if (item) {
+      item.addEventListener("mouseenter", function () { open(); });
+      item.addEventListener("mouseleave", function () { if (!locked) close(); });
+    }
+
+    title.addEventListener("click", toggle);
+    title.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        toggle();
       }
     });
   });
