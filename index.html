@@ -119,24 +119,26 @@
     background: none;
     border: 0;
     padding: 0;
-    margin: 0;
+    margin: 0 0 0 0.5em;
     color: inherit;
     font: inherit;
     letter-spacing: inherit;
     text-transform: inherit;
     cursor: pointer;
-    display: inline-block;
-    margin-left: 0.5em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 0.72em;
+    height: 0.72em;
     line-height: 1;
     vertical-align: baseline;
   }
 
   .arrow {
-    display: inline-block;
+    display: block;
     width: 0.5em;
     height: 0.5em;
     background: currentColor;
-    vertical-align: 0.08em;
     transition: background 0.2s ease, box-shadow 0.2s ease;
   }
 
@@ -153,11 +155,16 @@
 
   .desc-inner {
     padding-top: 0.4em;
-    padding-bottom: 0.2em;
+    padding-bottom: 1.4em;
   }
 
   .desc-body {
     margin-top: 0.5em;
+  }
+
+  .desc-link {
+    display: inline-block;
+    margin-top: 1em;
   }
 
   .desc-body p + p {
@@ -215,6 +222,7 @@
             <div>Feb 2026 &ndash; Present</div>
             <div>Founder, Z&uuml;rich</div>
             <div class="desc-body">Started a research project during my consulting work to automate technical due diligence for real estate transactions, which grew into Bird &mdash; a data standard and B2B tool that uses computer vision to automate building inspections. Leading a team of three developers. What used to take days now takes minutes.</div>
+            <a class="desc-link" href="https://birdinspect.com" target="_blank" rel="noopener noreferrer">birdinspect.com</a>
           </div>
         </div>
       </div>
@@ -231,6 +239,7 @@
             <div>Mar 2026 &ndash; May 2026</div>
             <div>Architectural Intern, Kyoto</div>
             <div class="desc-body">Worked at a small practice where the physical model is the primary design instrument. Renovated traditional machiya timber townhouses, navigating Kyoto's zoning and use restrictions.</div>
+            <a class="desc-link" href="https://www.midw.jp" target="_blank" rel="noopener noreferrer">midw.jp</a>
           </div>
         </div>
       </div>
@@ -241,6 +250,7 @@
             <div>Sep 2025 &ndash; Feb 2026</div>
             <div>Real Estate Consulting Intern, Z&uuml;rich</div>
             <div class="desc-body">Ran market-based feasibility studies and DCF valuations for institutional portfolios worth over CHF 8 billion. Wrote hold/sell recommendations for 20+ development sites. Managed procedural frameworks for architectural competitions under Swiss procurement law.</div>
+            <a class="desc-link" href="https://www.emchberger.ch" target="_blank" rel="noopener noreferrer">emchberger.ch</a>
           </div>
         </div>
       </div>
@@ -251,6 +261,7 @@
             <div>Jul 2023 &ndash; Jun 2025</div>
             <div>Operations Assistant, Z&uuml;rich</div>
             <div class="desc-body">Helped run a 15-room boutique hotel in Seefeld alongside the owner. Daily operations, guest relations, cash-flow reconciliation, and seasonal pricing.</div>
+            <a class="desc-link" href="https://www.hotel-nimo.ch" target="_blank" rel="noopener noreferrer">hotel-nimo.ch</a>
           </div>
         </div>
       </div>
@@ -261,6 +272,7 @@
             <div>Sep 2022 &ndash; Apr 2023</div>
             <div>Architectural Intern, Z&uuml;rich</div>
             <div class="desc-body">Worked on Wankdorf City 3, a major mixed-use development in Bern &mdash; design studies for a 25-story tower, coordination with structural engineers within complex zoning envelopes.</div>
+            <a class="desc-link" href="https://www.bgp.ch" target="_blank" rel="noopener noreferrer">bgp.ch</a>
           </div>
         </div>
       </div>
